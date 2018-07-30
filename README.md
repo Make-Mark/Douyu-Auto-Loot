@@ -1,9 +1,8 @@
-# Collection of my greasemonkey/tampermonkey scripts
+# Based on work of EternalPhane
+Forked from https://github.com/EternalPhane/UserScripts
+# Original Script Available here
 https://greasyfork.org/users/148663-eternalphane
+
 ## TOC
-- [斗鱼助手](Douyu%20Assistant)
-
-  自动领取鱼丸、打开宝箱（需要手动输入验证码）
-- [StackOverflow净化器](StackOverflow%20Purifier)
-
-  屏蔽某个智障用户Ciro Santilli
+- Auto start
+- 5 sec count down and TTS Notification

@@ -11,12 +11,16 @@
 // @grant        GM_getResourceText
 // ==/UserScript==
 
+let chestId = null;
+let yuwanId = null;
+var ttscrc = '"http://tts.baidu.com/text2audio?idx=1&tex=' + document.title.substring(0,5) + '&cuid=baidu_speech_demo&cod=2&lan=zh&ctp=1&pdt=1&spd=5&vol=5&pit=5&per=3"';
+$( "body" ).append("<audio id='audioPlay' src=" + ttscrc + " type='audio/mpeg'> hidden='true'>" );
+var audio = document.getElementById( "audioPlay" );
+
 (() => {
     'use strict';
     GM_addStyle(GM_getResourceText('css'));
     $('div#js-stats-and-actions > div:nth-child(3)').after(GM_getResourceText('html'));
-    let chestId = null;
-    let yuwanId = null;
     const getYuwan = () => {
         const time = $('span.getyw-time').text();
         const wait = () => {
@@ -54,18 +58,28 @@
         }
         yuwanId = setTimeout(getYuwan, 1000);
     };
+
+    clickChest();
     $('input#chest-switch').change((e) => {
         e.currentTarget.checked
-            ? (chestId = setInterval(() => {
-                  if ($('div.geetest_fullpage_click_box:visible').length) {
-                      return;
-                  }
-                  const peck = $('div.peck-cdn');
-                  peck.length && '领取' === peck.text() && peck.mouseenter().click();
-              }, 100))
+            ? clickChest()
             : clearInterval(chestId);
     });
+    $('input#chest-switch').prop("checked",true);
     $('input#yuwan-switch').change(
         (e) => (e.currentTarget.checked ? getYuwan() : clearTimeout(yuwanId))
     );
 })();
+
+function clickChest(){
+    chestId = setInterval(() => {
+        if ($('div.geetest_fullpage_click_box:visible').length) {
+            return;
+        }
+        const peck = $('div.peck-cdn');
+        peck.length && '领取' === peck.text() && peck.mouseenter().click();
+            if (document.getElementsByClassName("peck-cdn")[0].innerHTML == "00:05" || document.getElementsByClassName("peck-cdn")[0].innerHTML == "领取"){
+                audio.play();
+            }
+        }, 100)
+}

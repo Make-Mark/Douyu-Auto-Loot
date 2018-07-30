@@ -4,5 +4,5 @@ Forked from https://github.com/EternalPhane/UserScripts
 https://greasyfork.org/users/148663-eternalphane
 
 ## TOC
-- Auto start
-- 5 sec count down and TTS Notification
+- Auto start looting
+- 5 sec count down and TTS notification
